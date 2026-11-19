@@ -1,0 +1,5 @@
+{
+  // Editors only pick up a file named tsconfig.json; this gives renderer files the same
+  // settings as `npm run typecheck` (including vite/client, which types asset imports such as *.svg).
+  "extends": "./tsconfig.web.json"
+}

@@ -1,0 +1,105 @@
+{
+  "name": "miniapp-desktop",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Electron dashboard starter",
+  "main": "./out/main/index.js",
+  "scripts": {
+    "dev": "electron-vite dev --watch",
+    "build": "npm run typecheck && electron-vite build",
+    "preview": "electron-vite preview",
+    "setup:yt-dlp": "node scripts/setup-yt-dlp.mjs",
+    "setup:media": "npm run setup:yt-dlp && node scripts/setup-ffmpeg.mjs && node scripts/setup-scrcpy.mjs",
+    "typecheck": "tsc --noEmit -p tsconfig.node.json && tsc --noEmit -p tsconfig.web.json",
+    "dist:mac": "npm run setup:media && npm run build && electron-builder --mac",
+    "dist:win": "npm run setup:media && npm run build && electron-builder --win",
+    "dist:linux": "npm run setup:media && npm run build && electron-builder --linux"
+  },
+  "dependencies": {
+    "@ant-design/cssinjs": "^2.1.2",
+    "@ant-design/icons": "^6.3.4",
+    "@monaco-editor/react": "^4.7.0",
+    "@tanstack/react-virtual": "^3.14.19",
+    "@tiptap/core": "3.31.4",
+    "@tiptap/extension-code-block": "3.31.4",
+    "@tiptap/extension-image": "3.31.4",
+    "@tiptap/extension-list": "3.31.4",
+    "@tiptap/extensions": "3.31.4",
+    "@tiptap/pm": "3.31.4",
+    "@tiptap/react": "3.31.4",
+    "@tiptap/starter-kit": "3.31.4",
+    "antd": "^6.6.5",
+    "dayjs": "1.11.23",
+    "ffmpeg-static": "^5.3.0",
+    "image-size": "^2.0.4",
+    "justified-layout": "^4.1.0",
+    "monaco-editor": "^0.57.0",
+    "music-metadata": "^12.2.0",
+    "onnxruntime-node": "^1.30.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "react-router-dom": "^7.18.4",
+    "yauzl": "^3.4.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/justified-layout": "^4.1.4",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/yauzl": "^3.4.0",
+    "@vitejs/plugin-react": "^5.2.0",
+    "electron": "^44.7.0",
+    "electron-builder": "^26.15.3",
+    "electron-vite": "^5.0.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^7.0.2",
+    "vite": "^7.3.7"
+  },
+  "author": "miniapp",
+  "build": {
+    "appId": "com.miniapp.desktop",
+    "productName": "MiniApp",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "out/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "resources/bin",
+        "to": "bin"
+      },
+      {
+        "from": "resources/icon.png",
+        "to": "icon.png"
+      }
+    ],
+    "mac": {
+      "icon": "resources/icon.icns",
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "category": "public.app-category.productivity"
+    },
+    "win": {
+      "icon": "resources/icon.ico",
+      "target": [
+        "nsis",
+        "zip"
+      ]
+    },
+    "linux": {
+      "icon": "resources/icon.png",
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "category": "Utility",
+      "maintainer": "miniapp"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "id": "hello-module",
+  "name": "Hello Module",
+  "version": "1.0.0",
+  "description": "A small example of a runtime Miniapp module.",
+  "ui": "index.html",
+  "main": "main.cjs"
+}
